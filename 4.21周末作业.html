@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="./jquery-3.6.1.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/layui@2.6.8/dist/css/layui.css"
+  />
+  <!-- 引入 layui.js -->
+  <script src="https://unpkg.com/layui@2.6.8/dist/layui.js"></script>
+  <style>
+    .night {
+      background-color: black;
+    }
+    .daytime {
+      background-color: white;
+    }
+
+    #box {
+      width: 98%;
+      height: auto;
+
+      margin: auto;
+      margin-top: 10px;
+      border-radius: 4px;
+    }
+    #header {
+      width: 100%;
+      height: 60px;
+      border-bottom: none;
+    }
+    #show {
+      float: right;
+      border: none;
+      border-radius: 2px;
+      margin-top: 10px;
+      margin-right: 8px;
+    }
+    #delete {
+      border-radius: 2px;
+      margin-top: 10px;
+      margin-right: 10px;
+      float: right;
+    }
+
+    table {
+      width: 100%;
+      height: auto;
+      border-collapse: collapse;
+    }
+    table tr {
+      height: 60px;
+    }
+    table tr:hover {
+      background-color: rgba(232, 232, 232, 0.925);
+    }
+    tbody td {
+      text-align: center;
+    }
+    .checkbox {
+      width: 70px;
+    }
+    #addbox {
+      width: 600px;
+      height: 350px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-top: -175px;
+      margin-left: -300px;
+      border-radius: 5px;
+      background-color: #f7f7f7;
+      box-shadow: 5px 5px 5px 5px gray;
+      display: none;
+    }
+    #addbox div {
+      display: inline-block;
+    }
+
+    #addleft {
+      width: 100px;
+      height: 200px;
+      text-align: center;
+      margin-left: 50px;
+      margin-top: 30px;
+    }
+    #addleft b {
+      display: block;
+      font-size: 16px;
+      line-height: 40px;
+    }
+
+    #addright {
+      width: 400px;
+      height: 200px;
+      position: absolute;
+      left: 150px;
+      top: 30px;
+    }
+    #addright input {
+      display: block;
+      height: 18px;
+    }
+    #addtitle {
+      margin-top: 10px;
+    }
+    #addartist {
+      margin-top: 18px;
+    }
+    #addalbum {
+      margin-top: 18px;
+    }
+    #addyear {
+      margin-top: 18px;
+    }
+    #addgenre {
+      margin-top: 18px;
+    }
+
+    #add {
+      position: absolute;
+      left: 422px;
+      top: 273px;
+    }
+    #modify {
+      position: absolute;
+      left: 422px;
+      top: 273px;
+    }
+    #off {
+      position: absolute;
+      left: 505px;
+      top: 273px;
+    }
+    thead {
+      background-color: #f7f7f7;
+    }
+    .tog {
+      background-color: #656463;
+    }
+    .tph {
+      background-color: white;
+    }
+  </style>
+  <body>
+    <ul class="layui-nav" lay-filter="">
+      <li class="layui-nav-item">
+        <a href="javascript:;">背景颜色</a>
+        <dl class="layui-nav-child">
+          <!-- 二级菜单 -->
+          <dd><a href="#" id="night">夜晚</a></dd>
+          <dd><a href="#" id="daytime">白天</a></dd>
+        </dl>
+      </li>
+    </ul>
+
+    <div id="box">
+      <div id="header">
+        <button id=""></button>
+        <button
+          id="delete"
+          class="layui-btn layui-btn-danger"
+          onclick="DeleteFun()"
+        >
+          删除选中
+        </button>
+        <button id="show" class="layui-btn">添加歌曲</button>
+      </div>
+
+      <table border="1">
+        <thead>
+          <tr>
+            <th><input type="checkbox" id="all" /></th>
+            <th>序号</th>
+            <th>歌曲名称</th>
+            <th>歌手名</th>
+            <th>专辑名称</th>
+            <th>年代</th>
+            <th>类型</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+
+        <tbody></tbody>
+      </table>
+
+      <div id="addbox">
+        <div id="addleft">
+          <b>歌曲名称</b>
+          <b>艺术家</b>
+          <b>专辑名称</b>
+          <b>年代</b>
+          <b>类型</b>
+        </div>
+
+        <div id="addright">
+          <input type="text" id="addtitle" />
+          <input type="text" id="addartist" />
+          <input type="text" id="addalbum" />
+          <input type="number" id="addyear" />
+          <input type="text" id="addgenre" />
+        </div>
+
+        <button class="layui-btn layui-btn-sm" id="add">确认添加</button>
+        <button class="layui-btn layui-btn-primary layui-btn-sm" id="off">
+          关闭页面
+        </button>
+
+        <button class="layui-btn layui-btn-sm" id="modify">确认修改</button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use("element", function () {
+      var element = layui.element;
+      //…
+    });
+
+    backColor = []; // 背景存储
+
+    //删除选中
+    function DeleteFun() {
+      let con = confirm("确认删除选中吗?");
+      if (con == true) {
+        $("tbody input:checked").each(function (index, item) {
+          var id = $(item).attr("data-id");
+          $.ajax({
+            url: "https://mp3.zzgoodqc.cn/api/songs/" + id,
+            type: "DELETE",
+            dataType: "json",
+            success: function (res) {
+              console.log(res);
+              if (res.code == 200) {
+                showList();
+                $("#all").prop("checked", false);
+              }
+            },
+          });
+        });
+      }
+    }
+
+    //背景颜色
+    $("#night").click(function () {
+      $("body").css("background", "#656463");
+      localStorage.setItem("背景颜色", JSON.stringify("tog"));
+    });
+    $("#daytime").click(function () {
+      $("body").css("background", "white");
+      localStorage.setItem("背景颜色", JSON.stringify("tph"));
+    });
+
+    (function () {
+      showList();
+      if (localStorage.getItem("背景颜色")) {
+        backColor = JSON.parse(localStorage.getItem("背景颜色"));
+      }
+
+      if (backColor == "") {
+        $("body").css("background", "white");
+        localStorage.setItem("背景颜色", JSON.stringify("tph"));
+      }
+    })();
+
+    let ss;
+    ss = localStorage.getItem("背景颜色");
+    ss = ss.replace(/"/g, "");
+    $("body").addClass(ss);
+    console.log(ss);
+
+    let flag; //确认 修改还是添加
+
+    //显示添加框
+    $("#show").click(function () {
+      $("#addbox").show();
+      $("#addbox").fadeOut(0);
+      $("#addbox").fadeIn(500);
+      $("#add").css("display", "block");
+      $("#modify").css("display", "none");
+    });
+    //隐藏添加框
+    $("#off").click(function () {
+      $("#addbox").hide();
+      $("#addbox").fadeIn(0);
+      $("#addbox").fadeOut(500);
+    });
+
+    //添加歌曲
+    $("#add").click(function () {
+      $.ajax({
+        url: "https://mp3.zzgoodqc.cn/api/songs",
+        type: "POST",
+        dataType: "json",
+        headers: { "Content-Type": "application/json" },
+        data: JSON.stringify({
+          title: $("#addtitle").val(),
+          artist: $("#addartist").val(),
+          album: $("#addalbum").val(),
+          year: $("#addyear").val(),
+          genre: $("#addgenre").val(),
+        }),
+        success: function (data) {
+          if (data.code == 201) {
+            alert("添加成功");
+            showList();
+            $("#addbox").hide();
+            $("#addbox").fadeIn(0);
+            $("#addbox").fadeOut(500);
+            $("#addtitle").val("");
+            $("#addartist").val("");
+            $("#addalbum").val("");
+            $("#addyear").val("");
+            $("#addgenre").val("");
+          } else {
+            alert("添加失败");
+            console.log(data);
+          }
+        },
+      });
+    });
+
+    //显示页面
+    function showList() {
+      $.ajax({
+        url: "http://81.68.107.245/api/songs",
+        type: "GET",
+        dataType: "json",
+        data: {
+          page: 1,
+          pageSize: 10,
+        },
+        success: function (data) {
+          if (data.code == "200") {
+            console.log(data);
+            getList(data.data);
+          } else {
+            alert("获取失败");
+          }
+        },
+      });
+    }
+
+    // 渲染页面
+    function getList(data) {
+      let html = "";
+      data.sort((a, b) => {
+        return b.id - a.id;
+      });
+      console.log(data);
+      data.forEach((item, index) => {
+        html += `
+               <tr>
+                  <td class="checkbox"><input type="checkbox" data-id=${item.id} name='choose' /></td>
+                  <td>${item.id}</td>
+                  <td>${item.title}</td>
+                  <td>${item.artist}</td>
+                  <td>${item.album}</td>
+                  <td>${item.year}</td>
+                  <td>${item.genre}</td>
+                  <td>
+                    <button data-id=${item.id} onclick='viewFun(this)' class="layui-btn layui-btn-normal layui-btn-sm">
+                      查看
+                    </button>
+                    <button data-id=${item.id} onclick='modifyFun(this)'  class="layui-btn layui-btn-normal layui-btn-sm">
+                      编辑
+                    </button>
+                    <button data-id=${item.id} onclick='delFun(this)' class="layui-btn layui-btn-danger layui-btn-sm">
+                      删除
+                    </button>
+                  </td>
+                </tr>
+               `;
+      });
+      $("tbody").html(html);
+    }
+
+    //删除
+    function delFun(that) {
+      let id = $(that).attr("data-id");
+      let con = confirm("确认删除序号" + id + "吗?");
+      if (con == true) {
+        $.ajax({
+          url: "https://mp3.zzgoodqc.cn/api/songs/" + id,
+          type: "DELETE",
+          dataType: "json",
+          success: function (res) {
+            if (res.code == 200) {
+              alert("删除成功");
+              showList();
+            } else {
+              console.log(res);
+            }
+          },
+        });
+      }
+    }
+
+    //查看
+    function viewFun(that) {
+      let id = $(that).attr("data-id");
+      $("#add").css("display", "none");
+      $("#modify").css("display", "none");
+      $("#addbox").show();
+      $("#addbox").fadeOut(0);
+      $("#addbox").fadeIn(500);
+      $.ajax({
+        url: "https://mp3.zzgoodqc.cn/api/songs/" + id,
+        type: "get",
+        dataType: "json",
+        success: function (data) {
+          if (data.code == 200) {
+            $("#addtitle").val(data.data.title);
+            $("#addartist").val(data.data.artist);
+            $("#addalbum").val(data.data.album);
+            $("#addyear").val(data.data.year);
+            $("#addgenre").val(data.data.genre);
+            console.log(data.data);
+          } else {
+            console.log(data);
+          }
+        },
+      });
+    }
+
+    //编辑回显
+    function modifyFun(that) {
+      flag = $(that).attr("data-id");
+      $("#add").css("display", "none");
+      $("#modify").css("display", "block");
+      $("#addbox").show();
+      $("#addbox").fadeOut(0);
+      $("#addbox").fadeIn(500);
+      $.ajax({
+        url: "https://mp3.zzgoodqc.cn/api/songs/" + flag,
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+          if (data.code == 200) {
+            $("#addtitle").val(data.data.title);
+            $("#addartist").val(data.data.artist);
+            $("#addalbum").val(data.data.album);
+            $("#addyear").val(data.data.year);
+            $("#addgenre").val(data.data.genre);
+            console.log(data.data);
+          } else {
+            console.log(data);
+          }
+        },
+      });
+    }
+
+    //确认编辑
+    $("#modify").click(function () {
+      $.ajax({
+        url: "https://mp3.zzgoodqc.cn/api/songs/" + flag,
+        type: "PUT",
+        dataType: "json",
+        headers: { "Content-Type": "application/json" },
+        data: JSON.stringify({
+          title: $("#addtitle").val(),
+          artist: $("#addartist").val(),
+          album: $("#addalbum").val(),
+          year: $("#addyear").val(),
+          genre: $("#addgenre").val(),
+        }),
+        success: function (data) {
+          if (data.code == 200) {
+            alert("编辑成功序号" + flag);
+            $("#addbox").hide();
+            $("#addbox").fadeIn(0);
+            $("#addbox").fadeOut(500);
+            showList();
+          } else {
+            console.log(data);
+          }
+        },
+      });
+    });
+
+    //全选
+    $("#all").click(function () {
+      $("td input[name='choose']").each(function () {
+        $(this).prop("checked", $("#all").prop("checked"));
+      });
+    });
+  </script>
+  <script></script>
+</html>
