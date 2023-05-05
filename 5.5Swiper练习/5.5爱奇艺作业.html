@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+    <!-- Demo styles -->
+    <style>
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+      .swiper {
+        width: 80%;
+        height: 80%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img
+            src="https://t15.baidu.com/it/u=3296547184,955585803&fm=58&app=83&size=w931&n=0&f=JPEG&fmt=auto&maxorilen2heic=2000000"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t15.baidu.com/it/u=1314421113,220630441&fm=58&app=83&size=w931&n=0&f=JPEG&fmt=auto&maxorilen2heic=2000000"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t13.baidu.com/it/u=1312754888,1290947424&fm=58&app=83&size=w931&n=0&f=JPEG&fmt=auto&maxorilen2heic=2000000"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t15.baidu.com/it/u=3507323950,925024418&fm=58&app=83&size=w931&n=0&f=JPEG&fmt=auto&maxorilen2heic=2000000"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t15.baidu.com/it/u=64478490,3386559093&fm=58&app=83&size=w931&n=0&f=JPEG&fmt=auto&maxorilen2heic=2000000"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t15.baidu.com/it/u=1448134677,1838212737&fm=58&app=83&size=w931&n=0&f=JPEG&fmt=auto&maxorilen2heic=2000000"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t14.baidu.com/it/u=1046513117,2555621512&fm=58&app=83&size=w931&n=0&f=JPEG&fmt=auto&maxorilen2heic=2000000"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t12.baidu.com/it/u=2064875622,383640745&fm=58&app=83&f=JPEG?w=200&h=266"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t10.baidu.com/it/u=1263609936,3144970509&fm=58&app=83&f=JPEG?w=270&h=379"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t11.baidu.com/it/u=3967168055,2469780493&fm=58&app=83&f=JPEG?w=270&h=378"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t11.baidu.com/it/u=950970722,2802705002&fm=58&app=83&f=JPEG?w=270&h=395"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://t11.baidu.com/it/u=2094335375,2343717174&fm=58&app=83&f=JPEG?w=270&h=399"
+          />
+        </div>
+      </div>
+      <!-- 分页器 -->
+      <div class="swiper-pagination"></div>
+
+      <!-- 如果需要导航按钮 -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        pagination: {
+          // el: ".swiper-pagination",
+          clickable: true,
+        },
+
+        //前进和后退
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+  </body>
+</html>

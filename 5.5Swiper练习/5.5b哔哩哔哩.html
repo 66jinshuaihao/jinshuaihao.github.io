@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="/jquery-3.6.1.js"></script>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+  />
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper {
+      width: 60%;
+      height: 60%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .swiper {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #page {
+      width: 186px;
+    }
+    #carousel {
+      margin-top: 100px;
+    }
+    #next {
+      position: absolute;
+      top: 370px;
+      left: 840px;
+    }
+    #prev {
+      position: absolute;
+      top: 370px;
+      left: 780px;
+    }
+  </style>
+  <body>
+    <div id="carousel" class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/5g/5g7ew7.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/ex/exyw3o.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/m3/m3zjx1.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/rr/rrd721.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/7p/7pje5o.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/x6/x6e13v.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/o5/o5yqr5.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/o5/o5dm2m.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/jx/jx5pm5.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+      </div>
+
+      <!-- 前进和后退 -->
+
+      <div id="next" class="swiper-button-next"></div>
+      <div id="prev" class="swiper-button-prev"></div>
+
+      <!-- 分页器 -->
+      <div id="page" class="swiper-pagination"></div>
+    </div>
+  </body>
+
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+</html>
