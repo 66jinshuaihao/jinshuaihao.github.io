@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <!-- Demo styles -->
+    <style>
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      body {
+        background: #2f2f2f;
+        color: #000;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 300px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .swiper-slide {
+        background-size: cover;
+        background-position: center;
+      }
+
+      .mySwiper2 {
+        height: 70%;
+        width: 45%;
+        margin-left: 100px;
+      }
+
+      .mySwiper {
+        height: 30%;
+        box-sizing: border-box;
+        padding: 10px 0;
+      }
+
+      .mySwiper .swiper-slide {
+        width: 25%;
+        height: 100%;
+        opacity: 0.4;
+      }
+
+      .mySwiper .swiper-slide-thumb-active {
+        opacity: 1;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #right {
+        border-radius: 5px;
+        text-align: center;
+        width: 450px;
+        height: 140px;
+        font-size: 18px;
+        position: absolute;
+        color: white;
+        top: 100px;
+        left: 860px;
+        background-color: #3c3c3c;
+        line-height: 50px;
+      }
+
+      .swiper-button-prev {
+        display: none;
+      }
+      #chakan {
+        width: 80px;
+        height: 24px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Swiper -->
+
+    <div id="right">
+      <p id="title">爱笑的漂亮女孩</p>
+
+      <button id="chakan">查看</button>
+    </div>
+
+    <div
+      style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+      class="swiper mySwiper2"
+    >
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/5g/5g7ew7.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/ex/exyw3o.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/m3/m3zjx1.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/rr/rrd721.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/7p/7pje5o.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/x6/x6e13v.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/o5/o5yqr5.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/o5/o5dm2m.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/jx/jx5pm5.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/kx/kxw3y1.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <div thumbsSlider="" class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img
+            value="0"
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/5g/5g7ew7.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+
+        <div class="swiper-slide">
+          <img
+            value="1"
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/ex/exyw3o.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            value="2"
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/m3/m3zjx1.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            value="3"
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/rr/rrd721.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            value="4"
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/7p/7pje5o.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            value="5"
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/x6/x6e13v.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            value="6"
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/o5/o5yqr5.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            value="7"
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/o5/o5dm2m.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            value="8"
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/jx/jx5pm5.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+        <div class="swiper-slide">
+          <img
+            value="9"
+            src="https://dogefs.s3.ladydaily.com/~/source/wallhaven/small/kx/kxw3y1.jpg?w=400&h=200&fmt=webp"
+          />
+        </div>
+      </div>
+    </div>
+    <script src="./jquery-3.6.1.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+      });
+      var swiper2 = new Swiper(".mySwiper2", {
+        spaceBetween: 10,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        thumbs: {
+          swiper: swiper,
+        },
+      });
+
+      //左右箭头隐藏
+      var num = 0;
+
+      $(".mySwiper img").on("click", function () {
+        num = $(this).attr("value");
+        console.log(num);
+        titleFun();
+        if (num == 0) {
+          $(".swiper-button-prev").hide();
+        }
+        if (num == 9) {
+          $(".swiper-button-next").hide();
+        }
+        if (num != 0 && num != 9) {
+          $(".swiper-button-prev").show();
+          $(".swiper-button-next").show();
+        }
+      });
+
+      //右箭头
+      $(".swiper-button-next").on("click", function () {
+        num++;
+        titleFun();
+        $(".swiper-button-prev").show();
+        if (num == 9) {
+          $(".swiper-button-next").hide();
+        }
+        console.log(num);
+      });
+
+      //左箭头
+      $(".swiper-button-prev").click(function () {
+        num--;
+        titleFun();
+        $(".swiper-button-next").show();
+        if (num == 0) {
+          $(".swiper-button-prev").hide();
+        }
+      });
+
+      $("#chakan").click(function () {
+        var strList = $(".swiper-slide-active img").attr("src");
+        var link = document.createElement("a");
+        link.download = strList.substring(strList.lastIndexOf("/") + 1);
+        link.href = strList;
+        link.click();
+      });
+
+      function titleFun() {
+        switch (num) {
+          case 0:
+            $("#title").text("爱笑的漂亮女孩");
+            break;
+          case 1:
+            $("#title").text("宇宙黑洞");
+            break;
+          case 2:
+            $("#title").text("油画三彩树");
+            break;
+          case 3:
+            $("#title").text("黑白双月");
+            break;
+          case 4:
+            $("#title").text("动物导游");
+            break;
+          case 5:
+            $("#title").text("宇宙空间");
+            break;
+          case 6:
+            $("#title").text("马里奥");
+            break;
+          case 7:
+            $("#title").text("最终幻想");
+            break;
+          case 8:
+            $("#title").text("不知道");
+            break;
+          case 9:
+            $("#title").text("孙猴子");
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>

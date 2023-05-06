@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <!-- <script src="/jquery-3.6.1.js"></script> -->
+  <link rel="stylesheet" href="../layui/css/layui.css" />
+  <script src="../echarts.js"></script>
+  <script src="../layui/layui.js"></script>
+  <script src="../jquery-3.6.1.js"></script>
+  <style>
+    #box {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      margin-bottom: 20px;
+    }
+    #tubiao {
+      width: 800px;
+      height: 500px;
+      margin: auto;
+    }
+
+    #boxTwo {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      margin-bottom: 20px;
+    }
+    #near {
+      width: 800px;
+      height: 500px;
+      position: absolute;
+      top: 60px;
+      left: 334px;
+      margin: auto;
+
+      display: none;
+    }
+
+    #title {
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+    }
+    #title div {
+      display: inline-block;
+      position: absolute;
+      left: 890px;
+    }
+    #title div button {
+      border-radius: 5px;
+    }
+    #title b {
+      position: absolute;
+      left: 335px;
+    }
+
+    #left {
+      width: 250px;
+      height: 500px;
+
+      position: absolute;
+      top: 60px;
+      left: 80px;
+    }
+    #left div {
+      width: 100%;
+      height: 50%;
+
+      font-size: 20px;
+      text-align: center;
+    }
+    #lefttop div {
+      margin-top: 100px;
+    }
+    #left b {
+      margin-bottom: 20px;
+    }
+
+    #leftbottom div {
+      margin-top: -100px;
+    }
+  </style>
+  <body>
+    <div id="title">
+      <b>浏览量分析</b>
+      <div>
+        <button id="Yestd" class="layui-btn layui-btn-normal layui-btn-sm">
+          昨天
+        </button>
+        <button id="Today" class="layui-btn layui-btn-normal layui-btn-sm">
+          今天
+        </button>
+        <button id="seveday" class="layui-btn layui-btn-normal layui-btn-sm">
+          近7日
+        </button>
+        <button id="Thirty" class="layui-btn layui-btn-normal layui-btn-sm">
+          近30日
+        </button>
+      </div>
+    </div>
+    <div id="box">
+      <div id="tubiao"></div>
+    </div>
+    <div id="boxTwo">
+      <div id="near"></div>
+    </div>
+
+    <div id="left">
+      <div id="lefttop">
+        <div>
+          <b>PV(总浏览量)</b> <br />
+          <span id="span1">1</span>
+        </div>
+      </div>
+
+      <div id="leftbottom">
+        <div>
+          <b>UV(总浏览量)</b>
+          <br />
+          <span id="span2">1</span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const colors = ["#5470C6"];
+    (function () {
+      YestdFun();
+    })();
+
+    //昨天事件
+    $("#Yestd").click(YestdFun);
+    //今天事件
+    $("#Today").click(TodayFun);
+
+    //昨天
+    function YestdFun() {
+      $("#tubiao").show();
+      $("#near").hide();
+      $("#span1").text(305);
+      $("#span2").text(0);
+      var mycharts = echarts.init(document.getElementById("tubiao"), "dark");
+      // 昨天浏览量
+      option = {
+        color: colors,
+        tooltip: {
+          trigger: "none",
+          axisPointer: {
+            type: "cross",
+          },
+        },
+        legend: {
+          data: ["PV", "UV"],
+        },
+        grid: {
+          top: 70,
+          bottom: 50,
+        },
+        xAxis: [
+          {
+            type: "category",
+            axisTick: {
+              alignWithLabel: true,
+            },
+            axisLine: {
+              onZero: false,
+              lineStyle: {
+                color: colors[0],
+              },
+            },
+            axisPointer: {
+              label: {
+                formatter: function (params) {
+                  return (
+                    "浏览量" +
+                    params.value +
+                    (params.seriesData.length
+                      ? ":" + params.seriesData[0].data
+                      : "")
+                  );
+                },
+              },
+            },
+            // prettier-ignore
+            data: ['0:00', '2:00', '4:00', '6:00', '8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+          },
+        ],
+        series: [
+          {
+            name: "PV",
+            type: "line",
+            smooth: true,
+            emphasis: {
+              focus: "series",
+            },
+            data: [10, 2, 6, 38, 0, 235, 57, 80, 30, 0, 0, 0],
+          },
+          {
+            name: "UV",
+            type: "line",
+          },
+        ],
+      };
+      //显示
+      mycharts.setOption(option);
+    }
+
+    //今天
+    function TodayFun() {
+      $("#tubiao").show();
+      $("#near").hide();
+      $("#span1").text(195);
+      $("#span2").text(0);
+      var Todaycharts = echarts.init(document.getElementById("tubiao"), "dark");
+      // 昨天浏览量
+      Todayoption = {
+        color: colors,
+        tooltip: {
+          trigger: "none",
+          axisPointer: {
+            type: "cross",
+          },
+        },
+        legend: {
+          data: ["PV", "UV"],
+        },
+        grid: {
+          top: 70,
+          bottom: 50,
+        },
+        xAxis: [
+          {
+            type: "category",
+            axisTick: {
+              alignWithLabel: true,
+            },
+            axisLine: {
+              onZero: false,
+              lineStyle: {
+                color: colors[0],
+              },
+            },
+            axisPointer: {
+              label: {
+                formatter: function (params) {
+                  return (
+                    "浏览量" +
+                    params.value +
+                    (params.seriesData.length
+                      ? ":" + params.seriesData[0].data
+                      : "")
+                  );
+                },
+              },
+            },
+            // prettier-ignore
+            data: ['0:00', '2:00', '4:00', '6:00', '8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+          },
+        ],
+        series: [
+          {
+            name: "PV",
+            type: "line",
+            smooth: true,
+            emphasis: {
+              focus: "series",
+            },
+            data: [0, 0, 9, 42, 6, 18, 15, 47, 10, 19, 30, 0],
+          },
+          {
+            name: "UV",
+            type: "line",
+          },
+        ],
+      };
+      //显示
+      Todaycharts.setOption(Todayoption);
+    }
+
+    //近七天事件
+    $("#seveday").click(function () {
+      $("#tubiao").hide();
+      $("#near").show();
+      $("#span1").text(2170);
+      $("#span2").text(119);
+      var sevedayChart = echarts.init(document.getElementById("near"), "dark");
+      // 昨天浏览量
+      seveoption = {
+        color: colors,
+        tooltip: {
+          trigger: "none",
+          axisPointer: {
+            type: "cross",
+          },
+        },
+        legend: {
+          data: ["PV", "UV"],
+        },
+        grid: {
+          top: 70,
+          bottom: 50,
+        },
+        xAxis: [
+          {
+            type: "category",
+            axisTick: {
+              alignWithLabel: true,
+            },
+            axisLine: {
+              onZero: false,
+              lineStyle: {
+                color: colors[0],
+              },
+            },
+            axisPointer: {
+              label: {
+                formatter: function (params) {
+                  return (
+                    "浏览量" +
+                    params.value +
+                    (params.seriesData.length
+                      ? ":" + params.seriesData[0].data
+                      : "")
+                  );
+                },
+              },
+            },
+            // prettier-ignore
+            data: ['2023-04-30', '2023-05-01', '2023-05-02', '2023-05-03', '2023-05-04', '2023-05-05', '2023-05-06'],
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+          },
+        ],
+        series: [
+          {
+            name: "PV",
+            type: "line",
+            smooth: true,
+            emphasis: {
+              focus: "series",
+            },
+            data: [263, 254, 237, 634, 252, 302, 192],
+          },
+          {
+            name: "UV",
+            type: "line",
+            smooth: true,
+            // emphasis: {
+            //   focus: "series",
+            // },
+            data: [22, 18, 18, 29, 14, 24, 19],
+          },
+        ],
+      };
+      //显示
+      sevedayChart.setOption(seveoption);
+    });
+
+    //近三十天
+    $("#Thirty").click(function () {
+      $("#tubiao").hide();
+      $("#near").show();
+      $("#span1").text(20302);
+      $("#span2").text(1056);
+      var ThirtyChart = echarts.init(document.getElementById("near"), "dark");
+      // 昨天浏览量
+      Thirtyoption = {
+        color: colors,
+        tooltip: {
+          trigger: "none",
+          axisPointer: {
+            type: "cross",
+          },
+        },
+        legend: {
+          data: ["PV", "UV"],
+        },
+        grid: {
+          top: 70,
+          bottom: 50,
+        },
+        xAxis: [
+          {
+            type: "category",
+            axisTick: {
+              alignWithLabel: true,
+            },
+            axisLine: {
+              onZero: false,
+              lineStyle: {
+                color: colors[0],
+              },
+            },
+            axisPointer: {
+              label: {
+                formatter: function (params) {
+                  return (
+                    "浏览量" +
+                    params.value +
+                    (params.seriesData.length
+                      ? ":" + params.seriesData[0].data
+                      : "")
+                  );
+                },
+              },
+            },
+            // prettier-ignore
+            data: ['2023-04-07', '2023-04-11', '2023-04-15', '2023-04-19', '2023-04-23', '2023-04-27', '2023-05-01','2023-05-05'],
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+          },
+        ],
+        series: [
+          {
+            name: "PV",
+            type: "line",
+            smooth: true,
+            emphasis: {
+              focus: "series",
+            },
+            data: [630, 432, 267, 3345, 716, 4000, 310, 780, 455],
+          },
+          {
+            name: "UV",
+            type: "line",
+            smooth: true,
+            // emphasis: {
+            //   focus: "series",
+            // },
+            data: [76, 42, 38, 108, 44, 40, 39, 36],
+          },
+        ],
+      };
+      //显示
+      ThirtyChart.setOption(Thirtyoption);
+    });
+  </script>
+</html>
