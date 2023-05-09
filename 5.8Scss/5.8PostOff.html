@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="../echarts.js"></script>
+  <script src="../China.js"></script>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+  />
+
+  <link rel="stylesheet" href="../css/Post.css" />
+  <script src="../jquery-3.6.1.js"></script>
+  <link rel="stylesheet" href="../layui/css/layui.css" />
+  <!-- layui部分 -->
+  <script src="../layui/layui.js"></script>
+  <!-- Swiper部分 -->
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+  <style></style>
+  <body>
+    <div id="head">
+      <div id="Navi">
+        <select name="">
+          <option value="">控股公司及寄递事业部</option>
+          <option value="">中国邮政储蓄银行</option>
+          <option value="">中邮人寿保险股份有限公司</option>
+          <option value="">中邮证券有限责任公司</option>
+          <option value="">中邮资本管理有限公司</option>
+          <option value="">集团公司寄递事业部</option>
+        </select>
+
+        <select name="">
+          <option value="">集团工会及直属单位</option>
+          <option value="">中国邮政集团工会</option>
+          <option value="">中国集邮总公司</option>
+          <option value="">邮政科学研究规划院</option>
+          <option value="">中国邮政文史中心</option>
+        </select>
+
+        <select name="">
+          <option value="">各地邮政</option>
+          <option value="">北京邮政</option>
+          <option value="">上海邮政</option>
+          <option value="">河南邮政</option>
+          <option value="">河北邮政</option>
+          <option value="">天津邮政</option>
+        </select>
+        <p>English</p>
+      </div>
+    </div>
+    <div id="content">
+      <div id="contenthead">
+        <a href="">
+          <img
+            src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/200568120.png"
+          />
+        </a>
+        <!-- 内容导航部分 -->
+        <div id="contentNavi">
+          <div class="jump">
+            <a>首页</a>
+            <p></p>
+          </div>
+          <div class="jump">
+            <a>关于我们</a>
+            <p></p>
+          </div>
+          <div class="jump">
+            <a>新闻中心</a>
+            <p></p>
+          </div>
+          <div class="jump">
+            <a>党建时空</a>
+            <p></p>
+          </div>
+          <div class="jump">
+            <a>产品服务</a>
+            <p></p>
+          </div>
+          <div class="jump">
+            <a>社会责任</a>
+            <p></p>
+          </div>
+          <div class="jump">
+            <a>企业文化</a>
+            <p></p>
+          </div>
+        </div>
+        <!-- 内容搜索部分 -->
+        <div id="contentSearch">
+          <input type="text" placeholder="输入搜索关键字" />
+          <button class="layui-btn">搜索</button>
+        </div>
+      </div>
+    </div>
+    <!-- 大轮播图部分 -->
+    <div id="carousel">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img
+              src="http://www.chinapost.com.cn/res/ChinaPostJT/page/2012680921.jpg"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="http://www.chinapost.com.cn/res/ChinaPostJT/page/23049817.jpg"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="http://www.chinapost.com.cn/res/ChinaPostJT/page/22111563.jpg"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="http://www.chinapost.com.cn/res/ChinaPostJT/page/23032127.jpg"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="http://www.chinapost.com.cn/res/ChinaPostJT/page/22062839.png"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="http://www.chinapost.com.cn/res/ChinaPostJT/page/220574014.jpg"
+            />
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <!-- <img
+      id="btnimg"
+      src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/1813129465.png"
+    /> -->
+
+    <!-- 业务导航部分 -->
+    <div id="contentTwo">
+      <li>
+        <img
+          src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/2012677353.png"
+          alt=""
+        />
+        邮务业务
+      </li>
+      <li>
+        <img
+          src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/2012677354.png"
+          alt=""
+        />
+        快递业务
+      </li>
+      <li>
+        <img
+          src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/2012677355.png"
+          alt=""
+        />
+        银行业务
+      </li>
+      <li>
+        <img
+          src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/2012677356.png"
+          alt=""
+        />
+        保险业务
+      </li>
+      <li>
+        <img
+          src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/2012677357.png"
+          alt=""
+        />
+        证券业务
+      </li>
+      <li>
+        <img
+          src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/2012677358.png"
+          alt=""
+        />
+        网上商城
+      </li>
+    </div>
+
+    <!-- 小轮播图和导航部分 -->
+    <div id="uselNavi">
+      <!-- 左边部分 -->
+      <div id="leftusel">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img
+                src="http://www.chinapostnews.com.cn/newspaper/epaper/res/1/20230426/16491682485771029.jpg#auto"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="http://www.chinapostnews.com.cn/newspaper/epaper/res/1/20230425/41221682394662794.jpg#auto"
+                alt=""
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="http://www.chinapostnews.com.cn/newspaper/epaper/res/1/20230506/93511683344867317.jpg#auto"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="http://www.chinapostnews.com.cn/newspaper/epaper/res/1/20230505/12131683265292583.jpg#auto"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="http://www.chinapostnews.com.cn/newspaper/epaper/res/1/20230429/30881682711152247.jpg#auto"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="http://www.chinapostnews.com.cn/newspaper/epaper/res/1/20230428/29891682656289544.jpg#auto"
+              />
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div>
+          <p>123456</p>
+        </div>
+      </div>
+      <!-- 右边部分 -->
+      <div id="reightusel">
+        <div id="righthead">
+          <h2>集团要闻</h2>
+          <h2>综合新闻</h2>
+          <h2>媒体聚焦</h2>
+          <h2>一线风采</h2>
+        </div>
+        <div id="reighTent">
+          <h2>"满意邮路"上的"爱心信使"</h2>
+          <span
+            >前不久,黑龙江省哈尔滨市邮政分公司平房投递支局揽投员郭庆被评为“第十七届全国职工职业道德建设先进个人”。1930,哈尔滨的夜幕早已降临...</span
+          >
+        </div>
+
+        <div id="rightBom">
+          <li>邮储银行党委举办主题教育读书班 <b>2023-05-06</b></li>
+          <li>中邮保险价值转型成效显著 <b>2023-05-06</b></li>
+          <li>
+            邮储银行一季度经营发展稳健开局 “五大差异化增长极”建设成效...
+            <b>2023-05-06</b>
+          </li>
+          <li>
+            中国邮政助力法院审判执行质效提高实现双赢多赢共赢
+            <b>2023-05-06</b>
+          </li>
+          <li>集团公司表彰2022年劳动竞赛先进集体和个人 <b>2023-05-06</b></li>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部部分 -->
+    <div id="contentBom">
+      <div id="tenBomleft">
+        <div id="Bomlefthead">
+          <div id="samllBox"></div>
+          <p>邮政视频</p>
+          <div id="shipin">
+            <video
+              controls=""
+              height="274"
+              src="http://v.ctvpost.com/res/ChinaPostVideo/video/23041/2020_2.mp4"
+              width="486"
+            >
+              &nbsp;
+            </video>
+          </div>
+          <div id="afterBox">
+            <span>《邮政视频联播》2023年第15期</span>
+          </div>
+          <div id="Bomleftdibu">
+            <li>强邮争先锋 建功新时代</li>
+            <li>了不起的中国，不一样的邮政</li>
+          </div>
+        </div>
+      </div>
+
+      <div id="tenBomright">
+        <div id="tenBomhead">
+          <div class="tenBomNavi">
+            <li>信息公告</li>
+          </div>
+          <div class="tenBomNavi"><li>邮资票品发行公告</li></div>
+          <div class="tenBomNavi"><li>采购公告公示</li></div>
+          <div class="tenBomNavi"><li>预决算公开</li></div>
+        </div>
+
+        <div id="tenBomchoose">
+          <div>
+            <li>中国邮政集团有限公司关于公开征集《甲辰年》特种邮票...</li>
+            <span>2023-04-27</span>
+          </div>
+          <div>
+            <li>中国邮政集团有限公司关于公开征集《甲辰年》特种邮票...</li>
+            <span>2023-04-27</span>
+          </div>
+          <div>
+            <li>中国邮政集团有限公司关于公开征集《甲辰年》特种邮票...</li>
+            <span>2023-04-27</span>
+          </div>
+          <div>
+            <li>中国邮政集团有限公司关于公开征集《甲辰年》特种邮票...</li>
+            <span>2023-04-27</span>
+          </div>
+          <div>
+            <li>中国邮政集团有限公司关于公开征集《甲辰年》特种邮票...</li>
+            <span>2023-04-27</span>
+          </div>
+          <div>
+            <li>中国邮政集团有限公司关于公开征集《甲辰年》特种邮票...</li>
+            <span>2023-04-27</span>
+          </div>
+          <div>
+            <li>中国邮政集团有限公司关于公开征集《甲辰年》特种邮票...</li>
+            <span>2023-04-27</span>
+          </div>
+          <div>
+            <li>中国邮政集团有限公司关于公开征集《甲辰年》特种邮票...</li>
+            <span>2023-04-27</span>
+          </div>
+          <div>
+            <li>中国邮政集团有限公司关于公开征集《甲辰年》特种邮票...</li>
+            <span>2023-04-27</span>
+          </div>
+          <div>
+            <li>中国邮政集团有限公司关于公开征集《甲辰年》特种邮票...</li>
+            <span>2023-04-27</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部地图部分 -->
+    <div id="bottomMap">
+      <div id="leftMap">
+        <div id="leftMaphead">
+          <div id="MapBox"></div>
+          <p>邮政网点</p>
+        </div>
+
+        <div id="notice">
+          <img
+            src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/2012677420.jpg"
+          />
+          <p>邮政官网营业网点撤销信息</p>
+          <span>查看更多</span>
+        </div>
+        <div id="Map">
+          <div ref="chartone"></div>
+        </div>
+      </div>
+      <div id="bottomright">
+        <div id="bottomhead">
+          <div id="MapBox"></div>
+          <p>客服热线</p>
+        </div>
+        <ul>
+          <li>
+            <span>邮政业务</span>
+            <span class="number">11185</span>
+          </li>
+          <li><span>邮储银行</span> <span class="number">95580</span></li>
+          <li>
+            <span>邮递物流</span>
+            <span class="number">11183</span>
+          </li>
+          <li><span>中邮保险</span> <span class="number">4008909999</span></li>
+          <li><span>中邮证券</span> <span class="number">4008888005</span></li>
+        </ul>
+        <button class="layui-btn">举报专区</button>
+
+        <div id="bottomNavi">
+          <div id="MapBox"></div>
+          <p>邮政新媒体</p>
+        </div>
+        <div id="bomQRcodeBox">
+          <li class="QRcodeBox">
+            <img
+              src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/1813129448.jpg"
+            />
+            <span>中国邮政微信订阅号</span>
+          </li>
+          <li class="QRcodeBox">
+            <img
+              src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/1813478632.jpg"
+            />
+            <span>中国邮政微信服务号</span>
+          </li>
+          <li class="QRcodeBox">
+            <img
+              src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/1814288693.jpg"
+            />
+            <span>中国邮政微信服务号</span>
+          </li>
+        </div>
+      </div>
+    </div>
+
+    <!-- 最后底部部分 -->
+    <div id="bottomLink">
+      <div id="linkheadBox">
+        <h4>友情链接:</h4>
+        <a href="">中国政府网</a>
+        <a href="">财政部</a>
+        <a href="">交通运输部</a>
+        <a href="">国家邮政局</a>
+      </div>
+
+      <div id="linkBom">
+        <h5>中国邮政集团有限公司版权所有</h5>
+        <a href="">京ICP备15035540号</a>
+        <a href="">京公网安备110401400185</a>
+        <a href="">联系我们</a>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+
+    // 初始化echarts实例
+    var myEcharts = echarts.init(document.getElementById("Map"));
+    var option = {
+      title: {
+        //标题样式
+        text: "ECharts 中国地图",
+        x: "center",
+        textStyle: {
+          fontSize: 18,
+          color: "red",
+        },
+      },
+      tooltip: {
+        //这里设置提示框
+        trigger: "item", //数据项图形触发
+        backgroundColor: "red", //提示框浮层的背景颜色。
+        //字符串模板(地图): {a}（系列名称），{b}（区域名称），{c}（合并数值）,{d}（无）
+        formatter: "地区：{b}<br/>模拟数据：{c}",
+      },
+      visualMap: {
+        //视觉映射组件
+        top: "center",
+        left: "left",
+        min: 10,
+        max: 500000,
+        text: ["High", "Low"],
+        realtime: false, //拖拽时，是否实时更新
+        calculable: true, //是否显示拖拽用的手柄
+        inRange: {
+          color: ["lightskyblue", "yellow", "orangered"],
+        },
+      },
+      series: [
+        {
+          name: "模拟数据",
+          type: "map",
+          mapType: "china",
+          roam: false, //是否开启鼠标缩放和平移漫游
+          itemStyle: {
+            //地图区域的多边形 图形样式
+            normal: {
+              //是图形在默认状态下的样式
+              label: {
+                show: true, //是否显示标签
+                textStyle: {
+                  color: "black",
+                },
+              },
+            },
+            zoom: 1.5, //地图缩放比例,默认为1
+            emphasis: {
+              //是图形在高亮状态下的样式,比如在鼠标悬浮或者图例联动高亮时
+              label: { show: true },
+            },
+          },
+          top: "3%", //组件距离容器的距离
+          data: [
+            { name: "北京", value: 350000 },
+            { name: "天津", value: 120000 },
+            { name: "上海", value: 300000 },
+            { name: "重庆", value: 92000 },
+            { name: "河北", value: 25000 },
+            { name: "河南", value: 20000 },
+            { name: "云南", value: 500 },
+            { name: "辽宁", value: 3050 },
+            { name: "黑龙江", value: 80000 },
+            { name: "湖南", value: 2000 },
+            { name: "安徽", value: 24580 },
+            { name: "山东", value: 40629 },
+            { name: "新疆", value: 36981 },
+            { name: "江苏", value: 13569 },
+            { name: "浙江", value: 24956 },
+            { name: "江西", value: 15194 },
+            { name: "湖北", value: 41398 },
+            { name: "广西", value: 41150 },
+            { name: "甘肃", value: 17630 },
+            { name: "山西", value: 27370 },
+            { name: "内蒙古", value: 27370 },
+            { name: "陕西", value: 97208 },
+            { name: "吉林", value: 88290 },
+            { name: "福建", value: 19978 },
+            { name: "贵州", value: 94485 },
+            { name: "广东", value: 89426 },
+            { name: "青海", value: 35484 },
+            { name: "西藏", value: 97413 },
+            { name: "四川", value: 54161 },
+            { name: "宁夏", value: 56515 },
+            { name: "海南", value: 54871 },
+            { name: "台湾", value: 48544 },
+            { name: "香港", value: 49474 },
+            { name: "澳门", value: 34594 },
+          ],
+        },
+      ],
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myEcharts.setOption(option);
+  </script>
+</html>
