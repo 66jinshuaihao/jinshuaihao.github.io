@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="../echarts.js"></script>
+
+  <link rel="stylesheet" href="../layui/css/layui.css" />
+  <script src="../layui/layui.js"></script>
+
+  <script src="../jquery-3.6.1.js"></script>
+  <link rel="stylesheet" href="../css/5.12Exam.css" />
+  <style></style>
+  <body>
+    <div id="headBox">
+      <div class="title">待办事项</div>
+      <div id="levelTag">
+        <div class="xuan">
+          <p>待发货订单</p>
+          <span>单位(笔)</span>
+          <br />
+          <b class="num1">4</b>
+        </div>
+        <div>
+          <p>待处理售后</p>
+          <span>单位(笔)</span>
+          <br />
+          <b class="num2">0</b>
+        </div>
+        <div>
+          <p>待付款顶点</p>
+          <span>单位(笔)</span>
+          <br />
+          <b class="num3">113</b>
+        </div>
+        <div>
+          <p>待补货商品</p>
+          <span>单位(笔)</span>
+          <br />
+          <b class="num4">0</b>
+        </div>
+        <div>
+          <p>待审核会员</p>
+          <span>单位(笔)</span>
+          <br />
+          <b class="num5">0</b>
+        </div>
+        <div>
+          <p>待审核佣金</p>
+          <span>单位(笔)</span>
+          <br />
+          <b class="num6">948.19</b>
+        </div>
+      </div>
+    </div>
+    <!-- 中间折线图部分 -->
+    <div id="middle">
+      <div id="leftVip">
+        <div id="Viphead">
+          <h4 class="title">新增会员</h4>
+          <div>
+            <button
+              class="layui-btn layui-btn-primary layui-btn-sm"
+              id="btn-Today"
+            >
+              今天
+            </button>
+            <button
+              class="layui-btn layui-btn-primary layui-btn-sm"
+              id="btn-Yester"
+            >
+              昨天
+            </button>
+            <button
+              class="layui-btn layui-btn-primary layui-btn-sm"
+              id="btn-Seven"
+            >
+              近七天
+            </button>
+            <button
+              class="layui-btn layui-btn-primary layui-btn-sm"
+              id="btn-Thirty"
+            >
+              近30日
+            </button>
+          </div>
+        </div>
+
+        <div id="VipLine"></div>
+      </div>
+
+      <div id="rightOrder">
+        <div id="Orderhead">
+          <h4 class="title">新增订单</h4>
+          <div>
+            <button
+              class="layui-btn layui-btn-primary layui-btn-sm"
+              id="btn-Today"
+            >
+              今天
+            </button>
+            <button
+              class="layui-btn layui-btn-primary layui-btn-sm"
+              id="btn-Yester"
+            >
+              昨天
+            </button>
+            <button
+              class="layui-btn layui-btn-primary layui-btn-sm"
+              id="btn-Seven"
+            >
+              近七天
+            </button>
+            <button
+              class="layui-btn layui-btn-primary layui-btn-sm"
+              id="btn-Thirty"
+            >
+              近30日
+            </button>
+          </div>
+        </div>
+        <div id="OrderBar"></div>
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <div id="bottom">
+      <div id="Sumhead">
+        <h4 class="title">新增会员</h4>
+        <div id="headBox">
+          <input type="date" value="2023-05-12" />
+          <input type="date" value="2023-05-12" />
+          <button
+            class="layui-btn layui-btn-primary layui-btn-sm"
+            id="btn-Today"
+          >
+            今天
+          </button>
+          <button
+            class="layui-btn layui-btn-primary layui-btn-sm"
+            id="btn-Yester"
+          >
+            昨天
+          </button>
+          <button
+            class="layui-btn layui-btn-primary layui-btn-sm"
+            id="btn-Seven"
+          >
+            近七天
+          </button>
+          <button
+            class="layui-btn layui-btn-primary layui-btn-sm"
+            id="btn-Thirty"
+          >
+            近30日
+          </button>
+        </div>
+      </div>
+      <div id="BottomBox">
+        <div id="leftSum">
+          <div>
+            <p>成交金额(元)</p>
+            <b>796</b> <br />
+            <span>较昨日</span>
+          </div>
+          <div>
+            <p>退款金额(元)</p>
+            <b>0</b> <br />
+            <span>较昨日</span>
+          </div>
+          <div>
+            <p>支付订单数(笔)</p>
+            <b>4</b> <br />
+            <span>较昨日</span>
+          </div>
+          <div>
+            <p>支付人数(人)</p>
+            <b>4</b> <br />
+            <span>较昨日</span>
+          </div>
+          <div>
+            <p>客单价(元)</p>
+            <b>199</b> <br />
+            <span>较昨日</span>
+          </div>
+          <div>
+            <p>笔单价</p>
+            <b>199</b> <br />
+            <span>较昨日</span>
+          </div>
+        </div>
+
+        <div id="rightBar"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    (function () {
+      option = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(人)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "新增会员",
+            type: "line",
+            smooth: true,
+            showSymbol: false,
+            data: [35, 0, 14, 43, 17, 32, 0, 0, 0],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Vipchart = echarts.init(document.getElementById("VipLine"), "dark");
+      Vipchart.setOption(option);
+
+      Baroption = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(笔)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "新增订单",
+            type: "bar",
+            smooth: true,
+            showSymbol: false,
+            data: [35, 0, 14, 43, 17],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Orderchart = echarts.init(
+        document.getElementById("OrderBar"),
+        "dark"
+      );
+      Orderchart.setOption(Baroption);
+
+      Baroption2 = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(元)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "成交总额",
+            type: "line",
+            smooth: true,
+            showSymbol: false,
+            data: [0, 0, 150, 0, 650, 0, 0],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Orderchart2 = echarts.init(document.getElementById("rightBar"));
+      Orderchart2.setOption(Baroption2);
+    })();
+
+    $("#Viphead #btn-Today").click(function () {
+      option = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(人)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "新增会员",
+            type: "line",
+            smooth: true,
+            showSymbol: false,
+            data: [35, 0, 14, 43, 17, 32, 0, 0, 0],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Vipchart = echarts.init(document.getElementById("VipLine"), "dark");
+      Vipchart.setOption(option);
+    });
+
+    $("#Viphead #btn-Yester").click(function () {
+      option = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(人)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "新增会员",
+            type: "line",
+            smooth: true,
+            showSymbol: false,
+            data: [40, 5, 22, 45, 12, 51, 5, 44, 70],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Vipchart = echarts.init(document.getElementById("VipLine"), "dark");
+      Vipchart.setOption(option);
+    });
+
+    $("#Viphead #btn-Seven").click(function () {
+      option = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(人)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "新增会员",
+            type: "line",
+            smooth: true,
+            showSymbol: false,
+            data: [120, 210, 110, 230, 410, 100, 350, 157, 301],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Vipchart = echarts.init(document.getElementById("VipLine"), "dark");
+      Vipchart.setOption(option);
+    });
+
+    $("#Viphead #btn-Thirty").click(function () {
+      option = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(人)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "新增会员",
+            type: "line",
+            smooth: true,
+            showSymbol: false,
+            data: [400, 640, 715, 540, 331, 745, 790, 580, 900],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Vipchart = echarts.init(document.getElementById("VipLine"), "dark");
+      Vipchart.setOption(option);
+    });
+
+    //柱状线
+    $("#Orderhead #btn-Today").click(function () {
+      Baroption = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(笔)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "新增订单",
+            type: "bar",
+            smooth: true,
+            showSymbol: false,
+            data: [1, 0, 2, 3, 0],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Orderchart = echarts.init(
+        document.getElementById("OrderBar"),
+        "dark"
+      );
+      Orderchart.setOption(Baroption);
+    });
+
+    $("#Orderhead #btn-Yester").click(function () {
+      console.log(111);
+      Baroption = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(笔)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "新增订单",
+            type: "bar",
+            smooth: true,
+            showSymbol: false,
+            data: [3, 0, 1, 0, 4, 5, 0],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Orderchart = echarts.init(
+        document.getElementById("OrderBar"),
+        "dark"
+      );
+      Orderchart.setOption(Baroption);
+    });
+
+    $("#Orderhead #btn-Seven").click(function () {
+      console.log(111);
+      Baroption = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(笔)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "新增订单",
+            type: "bar",
+            smooth: true,
+            showSymbol: false,
+            data: [5, 1, 0, 0, 2, 7, 0],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Orderchart = echarts.init(
+        document.getElementById("OrderBar"),
+        "dark"
+      );
+      Orderchart.setOption(Baroption);
+    });
+
+    $("#Orderhead #btn-Thirty").click(function () {
+      console.log(111);
+      Baroption = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(笔)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "新增订单",
+            type: "bar",
+            smooth: true,
+            showSymbol: false,
+            data: [4, 0, 4, 3, 0, 4, 10],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Orderchart = echarts.init(
+        document.getElementById("OrderBar"),
+        "dark"
+      );
+      Orderchart.setOption(Baroption);
+    });
+
+    //最后的图
+    $("#headBox #btn-Today").click(function () {
+      Baroption2 = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(元)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "成交总额",
+            type: "line",
+            smooth: true,
+            showSymbol: false,
+            data: [0, 0, 150, 0, 650, 0, 0],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Orderchart2 = echarts.init(document.getElementById("rightBar"));
+      Orderchart2.setOption(Baroption2);
+    });
+
+    $("#headBox #btn-Yester").click(function () {
+      Baroption2 = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(元)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "成交总额",
+            type: "line",
+            smooth: true,
+            showSymbol: false,
+            data: [0, 0, 640, 143, 0, 780, 0],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Orderchart2 = echarts.init(document.getElementById("rightBar"));
+      Orderchart2.setOption(Baroption2);
+    });
+
+    $("#headBox #btn-Seven").click(function () {
+      Baroption2 = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(元)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "成交总额",
+            type: "line",
+            smooth: true,
+            showSymbol: false,
+            data: [0, 0, 710, 153, 440, 444, 0],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Orderchart2 = echarts.init(document.getElementById("rightBar"));
+      Orderchart2.setOption(Baroption2);
+    });
+
+    $("#headBox #btn-Seven").click(function () {
+      Baroption2 = {
+        backgroundColor: "white",
+        grid: {
+          left: "5%",
+          right: "5%",
+          top: "20%",
+          bottom: "15%",
+          containLabel: true,
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          padding: [5, 10],
+          textStyle: {
+            color: "rgb(100,100,255)",
+          },
+        },
+        legend: {
+          textStyle: {
+            color: "black",
+          },
+        },
+        xAxis: {
+          type: "category",
+          data: [
+            "0:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00",
+          ],
+          boundaryGap: true,
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              color: "black",
+            },
+          },
+          axisLabel: {
+            margin: 10,
+            textStyle: {
+              fontSize: 14,
+              color: "black",
+            },
+          },
+        },
+        yAxis: [
+          {
+            type: "value",
+            position: "left",
+            name: "单位(元)",
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ["rgba(51,51,51,0.2)"],
+              },
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "black",
+              },
+            },
+            nameTextStyle: {
+              color: "black",
+              fontSize: 12,
+              lineHeight: 0,
+            },
+            axisLabel: {
+              margin: 2,
+              textStyle: {
+                fontSize: 12,
+                color: "black",
+              },
+            },
+          },
+        ],
+        series: [
+          {
+            name: "成交总额",
+            type: "line",
+            smooth: true,
+            showSymbol: false,
+            data: [504, 440, 150, 900, 400, 444, 0],
+            itemStyle: {
+              normal: {
+                color: "rgb(12, 229, 142)",
+              },
+            },
+            lineStyle: {
+              normal: {
+                width: 3,
+              },
+            },
+          },
+        ],
+      };
+      var Orderchart2 = echarts.init(document.getElementById("rightBar"));
+      Orderchart2.setOption(Baroption2);
+    });
+  </script>
+</html>
