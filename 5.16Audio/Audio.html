@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link rel="stylesheet" href="../layui/css/layui.css" />
+  <script src="../layui/layui.js"></script>
+
+  <script src="../jquery-3.6.1.js"></script>
+  <link rel="stylesheet" href="../css/5.16Music.css" />
+  <link rel="shortcut icon" href="//y.qq.com/favicon.ico?max_age=2592000" />
+  <style>
+    source {
+      margin-top: 100px;
+    }
+  </style>
+  <body>
+    <div id="box">
+      <div id="head">
+        <h1 class="player_logo">
+          <a href="/" target="_blank"
+            ><img
+              class="player_logo__pic"
+              srcset="
+                //y.qq.com/mediastyle/yqq/img/player_logo@2x.png?max_age=2592000 2x
+              "
+              src="//y.qq.com/mediastyle/yqq/img/player_logo.png?max_age=2592000"
+              alt="QQ音乐"
+          /></a>
+        </h1>
+      </div>
+      <div id="content">
+        <div id="leftList">
+          <div id="optionBox">
+            <button class="layui-btn layui-btn-primary">
+              <img src="../img/收藏.png" />
+              收藏
+            </button>
+            <button class="layui-btn layui-btn-primary">
+              <img src="../img/添加.png" />
+              添加到
+            </button>
+            <button class="layui-btn layui-btn-primary">
+              <img src="../img/下载.png" /> 下载
+            </button>
+            <button class="layui-btn layui-btn-primary">
+              <img src="../img/删除.png" /> 删除
+            </button>
+            <button class="layui-btn layui-btn-primary">
+              <img src="../img/清空.png" />
+              清空列表
+            </button>
+          </div>
+          <div id="Playlist">
+            <div id="Playhead">
+              <input type="checkbox" id="all" />
+              <li class="song">歌曲</li>
+              <li class="Singer">歌手</li>
+              <li class="Duration">时长</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>1</span>
+              <li class="song">曹操</li>
+              <li class="Singer">林俊杰</li>
+              <li class="Duration">4:02</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>2</span>
+              <li class="song">稻香</li>
+              <li class="Singer">周杰伦</li>
+              <li class="Duration">3:43</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>3</span>
+              <li class="song">海阔天空</li>
+              <li class="Singer">Beyond</li>
+              <li class="Duration">5:26</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>3</span>
+              <li class="song">海阔天空</li>
+              <li class="Singer">Beyond</li>
+              <li class="Duration">5:26</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>3</span>
+              <li class="song">海阔天空</li>
+              <li class="Singer">Beyond</li>
+              <li class="Duration">5:26</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>3</span>
+              <li class="song">海阔天空</li>
+              <li class="Singer">Beyond</li>
+              <li class="Duration">5:26</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>3</span>
+              <li class="song">海阔天空</li>
+              <li class="Singer">Beyond</li>
+              <li class="Duration">5:26</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>3</span>
+              <li class="song">海阔天空</li>
+              <li class="Singer">Beyond</li>
+              <li class="Duration">5:26</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>3</span>
+              <li class="song">海阔天空</li>
+              <li class="Singer">Beyond</li>
+              <li class="Duration">5:26</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>3</span>
+              <li class="song">海阔天空</li>
+              <li class="Singer">Beyond</li>
+              <li class="Duration">5:26</li>
+            </div>
+            <div class="Playhead">
+              <input type="checkbox" name="choose" />
+              <span>3</span>
+              <li class="song">海阔天空</li>
+              <li class="Singer">Beyond</li>
+              <li class="Duration">5:26</li>
+            </div>
+          </div>
+        </div>
+
+        <div id="rightplay">
+          <ul>
+            <li><img src="../img/caocao.png" /></li>
+            <li>歌曲名:《曹操》</li>
+            <li>歌手:林俊杰</li>
+            <li>专辑名:曹操</li>
+          </ul>
+        </div>
+      </div>
+      <div id="Music-playback">
+        <audio controls>
+          <source src="../Mp3/曹操 - 林俊杰.mp3" type="audio/MP3" />
+        </audio>
+      </div>
+    </div>
+  </body>
+  <script>
+    //全选
+    $("#all").click(function () {
+      $(".Playhead input[name='choose']").each(function () {
+        $(this).prop("checked", $("#all").prop("checked"));
+      });
+    });
+  </script>
+</html>
