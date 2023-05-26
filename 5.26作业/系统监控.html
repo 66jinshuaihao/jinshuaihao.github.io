@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    body {
+      background-color: #f0f2f5;
+    }
+
+    #head {
+      width: 100%;
+      min-height: 270px;
+      background-color: white;
+      border-radius: 4px;
+    }
+    #xinxi {
+      width: 100%;
+      min-height: 30px;
+      border-bottom: 1px solid #cecece;
+    }
+    #xinxi p {
+      line-height: 30px;
+      margin-left: 15px;
+    }
+    #systemName {
+      width: 98%;
+      height: 110px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #cecece;
+    }
+
+    #systemName p {
+      color: #040404;
+      font-family: serif;
+    }
+    #systemName span {
+      color: #606266;
+      font-family: serif;
+    }
+
+    #systemName #left {
+      width: 50%;
+      height: 100%;
+      position: relative;
+    }
+    #systemName #left p {
+      margin-top: 24px;
+      display: inline-block;
+    }
+    #systemName #left span {
+      position: absolute;
+      left: 90px;
+      top: 23px;
+    }
+
+    #systemName #right {
+      width: 50%;
+      height: 100%;
+
+      position: relative;
+    }
+
+    #systemName #right p {
+      margin-top: 24px;
+      display: inline-block;
+    }
+    #systemName #right span {
+      position: absolute;
+      left: 90px;
+      top: 23px;
+    }
+
+    .version {
+      width: 98%;
+      height: 45px;
+      margin: auto;
+      border-bottom: 1px solid #cecece;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .version p {
+      color: #040404;
+      font-family: serif;
+    }
+    .version span {
+      color: #585858;
+      font-family: serif;
+    }
+
+    .version #left {
+      width: 50%;
+      height: 100%;
+      position: relative;
+    }
+    .version #left p {
+      margin-top: 12px;
+      display: inline-block;
+    }
+    .version #left span {
+      position: absolute;
+      left: 90px;
+      top: 13px;
+    }
+
+    .version #right {
+      width: 50%;
+      height: 100%;
+
+      position: relative;
+    }
+    .version #right p {
+      margin-top: 12px;
+      display: inline-block;
+    }
+    .version #right span {
+      position: absolute;
+      left: 90px;
+      top: 13px;
+    }
+
+    .CPU {
+      width: 100%;
+      height: 400px;
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .CPUuse {
+      width: 30%;
+      height: 100%;
+      background-color: white;
+      border-radius: 3px;
+    }
+    .CPUuse p {
+      font-size: 16px;
+      width: 80%;
+      margin-left: 10px;
+    }
+    .CPUuse div {
+      width: 100%;
+      height: 346px;
+      border-top: 1px solid #cecece;
+    }
+
+    .CPUtrend {
+      width: 68.5%;
+      height: 100%;
+      background-color: white;
+      border-radius: 3px;
+    }
+    .CPUtrend p {
+      font-size: 16px;
+      width: 80%;
+      margin-left: 10px;
+    }
+
+    .CPUtrend div {
+      width: 100%;
+      height: 346px;
+      border-top: 1px solid #cecece;
+    }
+
+    #DISK {
+      width: 100%;
+      height: 400px;
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+    #DISKuse {
+      width: 29%;
+      height: 100%;
+      background-color: white;
+      border-radius: 3px;
+    }
+    #DISKuse p {
+      font-size: 16px;
+      width: 80%;
+      margin-left: 10px;
+    }
+    #DISKuse div {
+      width: 100%;
+      height: 346px;
+      border-top: 1px solid #cecece;
+    }
+
+    #DISKtrend {
+      width: 70%;
+      height: 100%;
+      background-color: white;
+      border-radius: 3px;
+    }
+    #DISKtrend #pp {
+      font-size: 16px;
+      width: 100%;
+      margin-left: 10px;
+    }
+
+    #DISKtrend #sss {
+      width: 100%;
+      height: 346px;
+      border-top: 1px solid #cecece;
+    }
+    .aaa {
+      width: 95%;
+      height: 35px;
+      margin: auto;
+      margin-top: 15px;
+      text-align: center;
+      border-bottom: 1px solid #cecece;
+    }
+    .aaa p {
+      font-size: 14px;
+      line-height: 0px;
+      display: inline-block;
+      width: 100px;
+    }
+  </style>
+  <body>
+    <div id="head">
+      <div id="xinxi">
+        <p>服务器信息</p>
+      </div>
+
+      <div id="systemName">
+        <div id="left">
+          <p>系统名称</p>
+          <span>
+            GNU/Linux CentOS Linux 7.5.1804 (Core) build
+            3.10.0-1127.19.1.el7.x86_64</span
+          >
+        </div>
+        <div id="right">
+          <p>系统架构</p>
+          <span>amd64</span>
+        </div>
+      </div>
+
+      <div class="version">
+        <div id="left">
+          <p>java版本</p>
+          <span> 1.8.0_171</span>
+        </div>
+        <div id="right">
+          <p>jvm名称</p>
+          <span>Java HotSpot(TM) 64-Bit Server VM</span>
+        </div>
+      </div>
+
+      <div class="version">
+        <div id="left">
+          <p>ip</p>
+          <span> 172.17.16.10</span>
+        </div>
+        <div id="right">
+          <p>运行时间</p>
+          <span>528天 11小时 46分 35秒</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="CPU">
+      <div class="CPUuse">
+        <p>CPU使用率</p>
+        <div id="dynamic1"></div>
+      </div>
+
+      <div class="CPUtrend">
+        <p>CPU使用率趋势</p>
+        <div id="trend"></div>
+      </div>
+    </div>
+
+    <div class="CPU">
+      <div class="CPUuse">
+        <p>内存使用率</p>
+        <div id="dynamic2"></div>
+      </div>
+
+      <div class="CPUtrend">
+        <p>内存使用率趋势</p>
+        <div id="trend2"></div>
+      </div>
+    </div>
+
+    <div id="DISK">
+      <div id="DISKuse">
+        <p>磁盘总使用率</p>
+        <div id="dynamic3"></div>
+      </div>
+
+      <div id="DISKtrend">
+        <p id="pp">磁盘详情</p>
+        <div id="sss">
+          <div class="aaa">
+            <p>文件系统名称</p>
+            <p>挂载点或盘符</p>
+            <p>文件系统类型</p>
+            <p>磁盘分区总量</p>
+            <p>磁盘分区可用</p>
+            <p>磁盘分区已用</p>
+            <p>分区使用比例</p>
+          </div>
+
+          <div class="aaa">
+            <p>/</p>
+            <p>/</p>
+            <p>ext4</p>
+            <p>49.1Gib</p>
+            <p>36.7Gib</p>
+            <p>12.3Gib</p>
+            <p>25.15%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/jquery-3.6.1.js"></script>
+  <script src="/echarts.js"></script>
+
+  <script>
+    ayua();
+    ayuaTWO();
+    ayuaThere();
+
+    zhexianFun();
+    zhexianFun2();
+
+    function zhexianFun() {
+      var date = [];
+      var of = [];
+      for (var j = 0; j < 14; j++) {
+        date.push(j);
+        of.push(Math.random() * 19);
+      }
+      option = {
+        grid: {
+          top: 20,
+          height: "64%",
+          width: "85%",
+        },
+        xAxis: {
+          type: "category",
+          name: "Day",
+          data: date,
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            name: "CRP",
+            data: of,
+            type: "line",
+            symbol: "circle",
+            symbolSize: 5,
+            lineStyle: {
+              color: "rgb(254,67,117)",
+            },
+          },
+        ],
+      };
+      var len = date.length;
+      setInterval(function () {
+        of.push(of.shift());
+        date.push(len++);
+        date.shift();
+        myChart.setOption({
+          xAxis: {
+            data: date,
+          },
+          series: [
+            {
+              data: of,
+            },
+          ],
+        });
+      }, 2000);
+      var myChart = echarts.init(document.getElementById("trend"));
+      myChart.setOption(option);
+    }
+
+    function zhexianFun2() {
+      var date = [];
+      var of = [];
+      for (var j = 0; j < 14; j++) {
+        date.push(j);
+        of.push(Math.random() * 100);
+      }
+      option = {
+        grid: {
+          top: 20,
+          height: "64%",
+          width: "85%",
+        },
+        xAxis: {
+          type: "category",
+          name: "Day",
+          data: date,
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            name: "CRP",
+            data: of,
+            type: "line",
+            symbol: "circle",
+            symbolSize: 5,
+            lineStyle: {
+              color: "rgb(254,67,117)",
+            },
+          },
+        ],
+      };
+      var len = date.length;
+      setInterval(function () {
+        of.push(of.shift());
+        date.push(len++);
+        date.shift();
+        myChart.setOption({
+          xAxis: {
+            data: date,
+          },
+          series: [
+            {
+              data: of,
+            },
+          ],
+        });
+      }, 2000);
+      var myChart = echarts.init(document.getElementById("trend2"));
+      myChart.setOption(option);
+    }
+
+    function ayua() {
+      var abb = echarts.init(
+        document.getElementById("dynamic1"),
+        "purple-passion"
+      );
+      var item = {
+        name: "1核CPU",
+        value: random(),
+        unit: "%",
+        max: 100,
+      };
+      var option = {
+        title: {
+          text: item.value + item.unit,
+          x: "50%",
+          y: "50%",
+          textAlign: "center",
+          textStyle: {
+            fontSize: 35,
+            color: "#6bff79",
+          },
+          subtext: item.name,
+          subtextStyle: {
+            fontSize: 20,
+            color: "#bac7e5",
+            align: "center",
+          },
+        },
+        series: [
+          {
+            name: " ",
+            type: "pie",
+            radius: ["70%", "80%"],
+            startAngle: 225,
+            color: [
+              {
+                type: "linear",
+                x: 0,
+                y: 0,
+                x2: 0.4,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: "#00ffff", // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: "#70ffac", // 100% 处的颜色
+                  },
+                ],
+                globalCoord: false, // 缺省为 false
+              },
+              "none",
+            ],
+            hoverAnimation: false,
+            legendHoverLink: false,
+            z: 10,
+            labelLine: {
+              normal: {
+                show: false,
+              },
+            },
+            data: [
+              {
+                value: (75 * item.value) / 100,
+              },
+              {
+                value: item.max - (75 * item.value) / 100,
+              },
+            ],
+          },
+          {
+            name: "",
+            type: "pie",
+            radius: ["70%", "80%"],
+            startAngle: 225,
+            color: ["#172228"],
+            z: 9,
+            hoverAnimation: false,
+            legendHoverLink: false,
+            labelLine: {
+              normal: {
+                show: false,
+              },
+            },
+            data: [
+              {
+                value: 75,
+                itemStyle: {
+                  normal: {
+                    color: "#172228",
+                  },
+                },
+              },
+              {
+                value: 25,
+              },
+            ],
+          },
+        ],
+      };
+      function random() {
+        return (Math.random() * 10).toFixed(2);
+      }
+
+      option.timeTicket = setInterval(function () {
+        var value = parseInt(Math.random() * 80);
+        setPercent(value);
+      }, 2000);
+
+      function setPercent(p) {
+        var value = random(),
+          value_ = (75 * value) / 100;
+        option.title.text = value + "%";
+        option.series[0].data[0].value = value_;
+        option.series[0].data[1].value = 100 - value_;
+        abb.setOption(option, true);
+      }
+      abb.setOption(option);
+    }
+
+    function ayuaTWO() {
+      var abb = echarts.init(
+        document.getElementById("dynamic2"),
+        "purple-passion"
+      );
+      var item = {
+        name: "1.6GiB/1.8.GiB",
+        value: random(),
+        unit: "%",
+        max: 100,
+      };
+      var option = {
+        title: {
+          text: item.value + item.unit,
+          x: "50%",
+          y: "50%",
+          textAlign: "center",
+          textStyle: {
+            fontSize: 35,
+            color: "#a3ff22",
+          },
+          subtext: item.name,
+          subtextStyle: {
+            fontSize: 20,
+            color: "#9c9c9c",
+            align: "center",
+          },
+        },
+        series: [
+          {
+            name: " ",
+            type: "pie",
+            radius: ["70%", "80%"],
+            startAngle: 225,
+            color: [
+              {
+                type: "linear",
+                x: 0,
+                y: 0,
+                x2: 0.4,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: "#ffaa21", // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: "#70ffac", // 100% 处的颜色
+                  },
+                ],
+                globalCoord: false, // 缺省为 false
+              },
+              "none",
+            ],
+            hoverAnimation: false,
+            legendHoverLink: false,
+            z: 10,
+            labelLine: {
+              normal: {
+                show: false,
+              },
+            },
+            data: [
+              {
+                value: (75 * item.value) / 100,
+              },
+              {
+                value: item.max - (75 * item.value) / 100,
+              },
+            ],
+          },
+          {
+            name: "",
+            type: "pie",
+            radius: ["70%", "80%"],
+            startAngle: 225,
+            color: ["#172228"],
+            z: 9,
+            hoverAnimation: false,
+            legendHoverLink: false,
+            labelLine: {
+              normal: {
+                show: false,
+              },
+            },
+            data: [
+              {
+                value: 75,
+                itemStyle: {
+                  normal: {
+                    color: "#172228",
+                  },
+                },
+              },
+              {
+                value: 25,
+              },
+            ],
+          },
+        ],
+      };
+      function random() {
+        return (Math.random() * 90).toFixed(2);
+      }
+
+      option.timeTicket = setInterval(function () {
+        var value = parseInt(Math.random() * 30);
+        setPercent(value);
+      }, 2000);
+
+      function setPercent(p) {
+        var value = random(),
+          value_ = (75 * value) / 100;
+        option.title.text = value + "%";
+        option.series[0].data[0].value = value_;
+        option.series[0].data[1].value = 100 - value_;
+        abb.setOption(option, true);
+      }
+      abb.setOption(option);
+    }
+
+    function ayuaThere() {
+      var abb = echarts.init(
+        document.getElementById("dynamic3"),
+        "purple-passion"
+      );
+      var item = {
+        name: "12.4GiB/49.1GiB",
+        value: random(),
+        unit: "%",
+        max: 100,
+      };
+      var option = {
+        title: {
+          text: item.value + item.unit,
+          x: "50%",
+          y: "50%",
+          textAlign: "center",
+          textStyle: {
+            fontSize: 35,
+            color: "#82c7ff",
+          },
+          subtext: item.name,
+          subtextStyle: {
+            fontSize: 20,
+            color: "#9c9c9c",
+            align: "center",
+          },
+        },
+        series: [
+          {
+            name: " ",
+            type: "pie",
+            radius: ["70%", "80%"],
+            startAngle: 225,
+            color: [
+              {
+                type: "linear",
+                x: 0,
+                y: 0,
+                x2: 0.4,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: "#018dff", // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: "#70ffac", // 100% 处的颜色
+                  },
+                ],
+                globalCoord: false, // 缺省为 false
+              },
+              "none",
+            ],
+            hoverAnimation: false,
+            legendHoverLink: false,
+            z: 10,
+            labelLine: {
+              normal: {
+                show: false,
+              },
+            },
+            data: [
+              {
+                value: (75 * item.value) / 100,
+              },
+              {
+                value: item.max - (75 * item.value) / 100,
+              },
+            ],
+          },
+          {
+            name: "",
+            type: "pie",
+            radius: ["70%", "80%"],
+            startAngle: 225,
+            color: ["#172228"],
+            z: 9,
+            hoverAnimation: false,
+            legendHoverLink: false,
+            labelLine: {
+              normal: {
+                show: false,
+              },
+            },
+            data: [
+              {
+                value: 75,
+                itemStyle: {
+                  normal: {
+                    color: "#172228",
+                  },
+                },
+              },
+              {
+                value: 25,
+              },
+            ],
+          },
+        ],
+      };
+      function random() {
+        return (Math.random() * 40).toFixed(2);
+      }
+
+      option.timeTicket = setInterval(function () {
+        var value = parseInt(Math.random() * 15);
+        setPercent(value);
+      }, 2000);
+
+      function setPercent(p) {
+        var value = random(),
+          value_ = (75 * value) / 100;
+        option.title.text = value + "%";
+        option.series[0].data[0].value = value_;
+        option.series[0].data[1].value = 100 - value_;
+        abb.setOption(option, true);
+      }
+      abb.setOption(option);
+    }
+  </script>
+</html>

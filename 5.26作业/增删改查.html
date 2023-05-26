@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="/jquery-3.6.1.js"></script>
+  <link rel="stylesheet" href="/layui/css/layui.css" />
+  <style>
+    #head {
+      width: 100%;
+      min-height: 130px;
+    }
+    #searchBox {
+      width: 100%;
+      height: 50px;
+    }
+    #searchBox div {
+      line-height: 50px;
+      display: inline-block;
+    }
+    #searchBox div b {
+      color: rgba(59, 59, 59, 0.859);
+      margin-left: 20px;
+      margin-right: 10px;
+    }
+    #searchBox div input {
+      height: 30px;
+      border: 1px solid rgba(143, 143, 143, 0.859);
+      border-radius: 2px;
+    }
+
+    #btnBox {
+      width: 100%;
+      height: 80px;
+    }
+    #btnBox button {
+      min-width: 100px;
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+
+    #showBox {
+      width: 65%;
+      min-height: 450px;
+      margin: auto;
+      background-image: linear-gradient(
+        to left,
+        rgb(133, 194, 209),
+        rgb(90, 90, 90)
+      );
+      position: fixed;
+      left: 180px;
+      display: none;
+    }
+
+    #showBox div span {
+      float: right;
+      margin-top: 10px;
+      margin-right: 15px;
+      font-size: 20px;
+    }
+    #showBox div span:hover {
+      cursor: pointer;
+      color: rgb(42, 156, 221);
+    }
+
+    #showBox .choose {
+      width: 100%;
+
+      margin-top: 30px;
+    }
+    #showBox .choose:first-child {
+      margin-top: 20px;
+    }
+
+    #showBox .choose:nth-child(2) div {
+      width: auto;
+      display: inline-block;
+    }
+
+    #showBox .choose:nth-child(2) div b {
+      margin-left: 60px;
+      font-size: 17px;
+      margin-right: 5px;
+    }
+
+    #showBox .choose:nth-child(2) div input {
+      height: 34px;
+      width: 240px;
+      border-radius: 4px;
+      font-size: 17px;
+    }
+
+    #showBox .choose:nth-child(3) div {
+      width: auto;
+      display: inline-block;
+    }
+
+    #showBox .choose:nth-child(3) div b {
+      margin-left: 60px;
+      font-size: 17px;
+      margin-right: 5px;
+    }
+
+    #showBox .choose:nth-child(3) div input {
+      height: 34px;
+      width: 240px;
+      border-radius: 4px;
+      font-size: 17px;
+    }
+    #showBox .choose:last-child {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #anniu {
+      float: right;
+      margin-right: 15px;
+      margin-top: 20px;
+    }
+
+    .layui-form-item {
+      width: 48%;
+      margin-top: 10px;
+    }
+
+    h2 {
+      font-weight: 100;
+      margin-left: 20px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+    table {
+      width: 100%;
+      min-height: 120px;
+    }
+    th {
+      height: 60px;
+    }
+    td {
+      height: 60px;
+      text-align: center;
+    }
+    tbody td:first-child {
+      width: 60px;
+    }
+    tbody td:nth-child(3) {
+      width: 180px;
+    }
+    tbody td:nth-child(4) {
+      width: 150px;
+    }
+    tbody td:nth-child(7) {
+      width: 150px;
+    }
+    tbody td:last-child {
+      width: 192px;
+    }
+  </style>
+  <body>
+    <!-- 搜索盒子 -->
+    <div id="head">
+      <div id="searchBox">
+        <div>
+          <b>账号</b>
+          <input type="search" placeholder="输入账号或用户名" id="searchAcc" />
+        </div>
+      </div>
+
+      <!-- 按钮盒子 -->
+      <div id="btnBox">
+        <button id="search" class="layui-btn layui-btn-normal">搜索</button>
+        <button class="layui-btn" style="background-color: #16b777">
+          重置
+        </button>
+        <button id="showbtn" class="layui-btn layui-btn-normal">新增</button>
+        <button class="layui-btn" style="background-color: #ffb800">
+          导出
+        </button>
+      </div>
+    </div>
+
+    <!-- 添加框 -->
+    <div id="showBox">
+      <div class="choose">
+        <h2>新增</h2>
+        <span>X</span>
+      </div>
+
+      <div class="choose">
+        <div>
+          <b>账号</b>
+          <input type="text" id="account" />
+        </div>
+        <div>
+          <b>用户名</b>
+          <input type="text" id="name" />
+        </div>
+      </div>
+
+      <div class="choose">
+        <div>
+          <b>邮箱</b>
+          <input type="email" id="email" />
+        </div>
+        <div>
+          <b>电话号</b>
+          <input type="number" id="number" />
+        </div>
+      </div>
+
+      <!-- 状态框 -->
+      <div class="layui-form choose">
+        <div class="layui-form-item">
+          <label class="layui-form-label">状态</label>
+          <div class="layui-input-block" id="status">
+            <input type="radio" name="status" value="禁用" title="禁用" />
+            <input type="radio" name="status" value="启用" title="启用" />
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">性别</label>
+          <div class="layui-input-block" id="sex">
+            <input type="radio" name="sex" value="男" title="男" />
+            <input type="radio" name="sex" value="女" title="女" />
+          </div>
+        </div>
+      </div>
+
+      <div id="anniu">
+        <button class="layui-btn layui-btn-primary" id="cancel">取消</button>
+        <button class="layui-btn layui-btn-normal" id="addbtn">确定</button>
+      </div>
+    </div>
+
+    <table border="1" id="laypage">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>账号</th>
+          <th>用户名</th>
+          <th>电话</th>
+          <th>邮箱</th>
+          <th>性别</th>
+          <th>修改时间</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+
+      <tbody></tbody>
+    </table>
+    <div id="demo-laypage-normal-1"></div>
+  </body>
+  <script src="/layui/layui.js"></script>
+  <script>
+    var flag; //判断是添加还是修改
+    var id;
+
+    let data = [
+      {
+        account: "admin",
+        name: "张三",
+        number: "12345678910",
+        email: "3244282256@qq.com",
+        sex: "男",
+        time: "2023-05-25:16:25",
+        status: "是",
+      },
+      {
+        account: "admin",
+        name: "李四",
+        number: "12345678910",
+        email: "3244282256@qq.com",
+        sex: "男",
+        time: "2023-05-25:16:25",
+        status: "是",
+      },
+      {
+        account: "admin",
+        name: "王五",
+        number: "12345678910",
+        email: "3244282256@qq.com",
+        sex: "男",
+        time: "2023-05-25:16:25",
+        status: "是",
+      },
+    ];
+
+    $("#reset").click(function () {
+      window.location.reload();
+    });
+
+    //获取数据渲染
+    function showList(serachData = data) {
+      let str = "";
+      serachData.forEach((item, index) => {
+        str += `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${item.account}</td>
+          <td>${item.name}</td>
+          <td>${item.number}</td>
+          <td>${item.email}</td>
+          <td>${item.sex}</td>
+          <td>${getNowtime(item.time)}</td>
+          <td>${item.status}</td>
+          <td>
+            <button data-id=${index}  class="layui-btn layui-btn-normal layui-btn-sm modify">
+              修改
+            </button>
+            <button data-index=${index}  class="layui-btn layui-btn-danger layui-btn-sm del">
+              删除
+            </button>
+          </td>
+        </tr>
+            `;
+      });
+      $("tbody").html(str);
+    }
+
+    //渲染
+    (function () {
+      showList();
+
+      //关闭添加框
+      $("#cancel").click(function () {
+        $("#showBox").hide();
+        $("#showBox").fadeIn(0);
+        $("#showBox").fadeOut(200);
+      });
+      //X关闭添加框
+      $("#showBox span").click(function () {
+        $("#showBox").hide();
+        $("#showBox").fadeIn(0);
+        $("#showBox").fadeOut(200);
+      });
+
+      //显示添加框
+      $("#showbtn").click(function () {
+        console.log(222);
+        flag = 1;
+        $("h2").html("新增");
+        $("#showBox").show();
+        $("#showBox").fadeOut(0);
+        $("#showBox").fadeIn(200);
+        $("#account").val("");
+        $("#name").val("");
+        $("#number").val("");
+        $("#email").val("");
+      });
+
+      //修改框
+      $("tbody ").on("click", 'button[class*="modify"]', function () {
+        console.log(111);
+        $("#showBox").show();
+        $("#showBox").fadeOut(0);
+        $("#showBox").fadeIn(200);
+        flag = 0;
+        $("h2").html("修改");
+
+        id = $(this).attr("data-id");
+        console.log($(this).attr("data-id"));
+        $("#account").val(data[id].account);
+        $("#name").val(data[id].name);
+        $("#number").val(data[id].number);
+        $("#email").val(data[id].email);
+      });
+
+      $("#searchAcc").on("input", function () {
+        if ($("#searchAcc").val() == "") {
+          showList();
+        }
+      });
+
+      //搜索
+      search.addEventListener("click", searchFun);
+      function searchFun() {
+        let serachData = data.filter((item) => {
+          return (
+            item.account.includes($("#searchAcc").val()) ||
+            item.name.includes($("#searchAcc").val())
+          );
+        });
+
+        showList(serachData);
+      }
+    })();
+
+    //添加或修改
+    $("#addbtn").click(function () {
+      if (flag === 1) {
+        let addData = {};
+        addData.account = $("#account").val();
+        addData.name = $("#name").val();
+        addData.number = $("#number").val();
+        addData.email = $("#email").val();
+        addData.sex = $("#sex input[name='sex']:checked").val();
+        addData.time = getNowtime();
+        addData.status = $("#status input[name='status']:checked").val();
+
+        data.push(addData);
+        showList();
+        $("#showBox").hide();
+        $("#showBox").fadeIn(0);
+        $("#showBox").fadeOut(200);
+      }
+
+      if (flag === 0) {
+        data[id].account = $("#account").val();
+        data[id].name = $("#name").val();
+        data[id].number = $("#number").val();
+        data[id].email = $("#email").val();
+        data[id].sex = $("#sex input[name='sex']:checked").val();
+        data[id].status = $("#status input[name='status']:checked").val();
+        showList();
+        $("#showBox").hide();
+        $("#showBox").fadeIn(0);
+        $("#showBox").fadeOut(200);
+      }
+    });
+
+    //删除
+    $("tbody").on("click", "button[class*=del]", function () {
+      var index = event.target.dataset.index;
+      var name = data[index].name;
+      let sag = confirm("确认删除" + name + "吗?");
+      if (sag == true) {
+        data.splice(index, 1);
+        showList();
+      }
+    });
+
+    function getNowtime() {
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth() + 1;
+      let day = date.getDate();
+      let hour = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      return `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
+    }
+  </script>
+</html>
