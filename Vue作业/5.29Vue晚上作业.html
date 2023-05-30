@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <link rel="stylesheet" href="../layui/css/layui.css" />
+  <style>
+    #box div:first-child p {
+      display: inline-block;
+      text-align: center;
+      width: 150px;
+      font-size: 18px;
+    }
+
+    p:hover {
+      color: rgb(247, 91, 91);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .entert {
+      width: 450px;
+      height: 250px;
+      border: 1px solid black;
+      display: inline-block;
+      text-align: center;
+      background-color: rgb(255, 211, 166);
+    }
+    table {
+      width: 100%;
+      min-height: 200px;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table tr td:first-child {
+      width: 60px;
+    }
+    thead {
+      background-image: linear-gradient(
+        to left,
+        rgb(85, 255, 93),
+        rgb(245, 112, 129)
+      );
+    }
+    thead td {
+      height: 60px;
+      text-align: center;
+    }
+    tbody td {
+      height: 60px;
+      text-align: center;
+    }
+
+    table tr td:last-child {
+      width: 200px;
+    }
+
+    #EventBox input {
+      display: block;
+      margin-top: 10px;
+    }
+    #EventBox {
+      width: 450px;
+      height: 150px;
+      background-color: rgb(159, 159, 159);
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin-left: -225px;
+      margin-top: -250px;
+      text-align: center;
+    }
+    #add {
+      position: fixed;
+      top: 200px;
+      right: 180px;
+    }
+    .color {
+      background-image: linear-gradient(
+        to left,
+        rgb(164, 165, 169),
+        rgb(160, 247, 255)
+      ) !important;
+    }
+  </style>
+  <body>
+    <div id="box">
+      <div>
+        <p v-on:click="yule(1)">娱乐新闻</p>
+        <p v-on:click="junshi(2)">军事新闻</p>
+        <p v-on:click="zhengzhi(3)">政治新闻</p>
+      </div>
+      <div v-show="num==1" class="entert">娱乐新闻</div>
+      <div v-show="num==2" class="entert">军事新闻</div>
+      <div v-show="num==3" class="entert">政治新闻</div>
+
+      <div id="EventBox" v-show="appear==1">
+        <input type="text" v-model="username" placeholder="新增名称" />
+        <input type="text" v-model="useremail" placeholder="新增链接" />
+        <input type="text" v-model="userdescribe" placeholder="新增描述" />
+
+        <button class="layui-btn" v-show="btnBox==1" @click="add()">
+          确定
+        </button>
+        <button class="layui-btn" @click="cancel()">取消</button>
+      </div>
+      <button class="layui-btn" @click="show()" id="add">新增</button>
+      <hr />
+      <table border="1">
+        <thead>
+          <tr>
+            <td>#</td>
+            <td>名称</td>
+            <td>链接</td>
+            <td>描述</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            @mouseover="changebgcolor(index)"
+            @mouseout="claerColor()"
+            v-bind:class="index==indexs?'color':''"
+            :style="index%2==0?'background:#d38dd6b3':'background:#0955ff8a'"
+            v-for="(item,index) in concontent"
+          >
+            <td>{{index+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.describe}}</td>
+            <td>
+              <button @click="del(index)">删除</button>
+              <button @click="view(index)">查看</button>
+              <button @click="modify(index)">修改</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+  <script src="../layui/layui.js"></script>
+  <script>
+    new Vue({
+      el: "#box",
+      data: {
+        indexs: -1,
+        username: "",
+        useremail: "",
+        userdescribe: "",
+        concontent: [
+          { id: 1, name: "百度", email: "www.baidu.com", describe: "666" },
+          { id: 2, name: "微软", email: "www.baidu.com", describe: "676" },
+          { id: 3, name: "腾讯", email: "www.baidu.com", describe: "996" },
+          { id: 4, name: "阿里", email: "www.baidu.com", describe: "666" },
+          { id: 5, name: "网易", email: "www.baidu.com", describe: "666" },
+          { id: 6, name: "盛大", email: "www.baidu.com", describe: "666" },
+          { id: 7, name: "万达", email: "www.baidu.com", describe: "666" },
+          { id: 8, name: "美团", email: "www.baidu.com", describe: "666" },
+        ],
+        bgcolor: -1,
+
+        num: 1, //选项卡判断条件
+
+        appear: 0, //显示添加框的条件
+
+        status: 0, //判断添加还是修改
+
+        btnBox: 1, //查看时隐藏添加框  1是显示 0是隐藏
+      },
+
+      global: "", //修改时候的id
+
+      //查看
+      methods: {
+        claerColor() {
+          this.indexs = -1;
+        },
+
+        // 鼠标移动上更换背景色
+        changebgcolor(index) {
+          // index:鼠标移上的元素的索引值
+          this.indexs = index;
+        },
+
+        //关闭
+        cancel() {
+          this.appear = 0;
+        },
+
+        //删除
+        del(index) {
+          let flag = confirm("确认删除" + this.concontent[index].name + "吗?");
+          if (flag == true) {
+            this.concontent.splice(index, 1);
+          }
+        },
+
+        view(index) {
+          this.btnBox = 0; //隐藏添加按钮
+          this.appear = 1;
+          this.username = this.concontent[index].name;
+          this.useremail = this.concontent[index].email;
+          this.userdescribe = this.concontent[index].describe;
+        },
+
+        //修改的回显
+        modify(index) {
+          global = index;
+          status = 1;
+          this.btnBox = 1;
+          this.appear = 1;
+          this.username = this.concontent[index].name;
+          this.useremail = this.concontent[index].email;
+          this.userdescribe = this.concontent[index].describe;
+        },
+
+        //显示添加时为空
+        show() {
+          status = 0;
+          this.appear = 1;
+          this.btnBox = 1;
+          this.username = "";
+          this.useremail = "";
+          this.userdescribe = "";
+        },
+
+        //添加 或者 修改
+        add() {
+          if (status == 0) {
+            let data = {
+              name: this.username,
+              email: this.useremail,
+              describe: this.userdescribe,
+            };
+            this.concontent.push(data);
+            this.appear = 0;
+          }
+          if (status == 1) {
+            this.concontent[global].name = this.username;
+            this.concontent[global].email = this.useremail;
+            this.concontent[global].describe = this.userdescribe;
+            this.appear = 0;
+          }
+        },
+        yule() {
+          this.num = 1;
+        },
+        junshi() {
+          this.num = 2;
+        },
+        zhengzhi() {
+          this.num = 3;
+        },
+      },
+    });
+  </script>
+</html>
